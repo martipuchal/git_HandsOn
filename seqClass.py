@@ -9,8 +9,8 @@ def percentage(seq):
     total = len(seq)
     for nucleotid in ("A","T","U","C","G"):
         if re.search(nucleotid,seq):
-            pc = (seq.count(nucleotid)/total)*100
-            print(f'The percentage of {nucleotid} in {seq} is {pc}%')
+            pct = round((seq.count(nucleotid)/total)*100,2)
+            print(f'The percentage of {nucleotid} in {seq} is {pct}%')
 
 
 
