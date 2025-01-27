@@ -21,11 +21,14 @@ args.seq = args.seq.upper()
 # Ensure only ACTG are used to build the sequence
 if re.search('^[ACGTU]+$', args.seq):
     # DNA contains T
-    if re.search('T', args.seq):
+    if re.search('T', args.seq) and not re.search('U',args.seq): 
         print ('The sequence is DNA')
     # RNA contains U
-    elif re.search('U', args.seq):
+    elif re.search('U', args.seq) and not re.search('T',args.seq):
         print ('The sequence is RNA')
+    # If T and U are detected the sequence is incorrect
+    elif re.search('U',args.seq) and re.search('T',args.seq):
+        print ('The sequence is not DNA nor RNA')
     # For not having T nor U
     else:
         print ('The sequence can be DNA or RNA')
