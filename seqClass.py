@@ -5,10 +5,21 @@
 import sys, re
 from argparse import ArgumentParser
 
+def percentage(seq):
+    total = len(seq)
+    for nucleotid in ("A","T","U","C","G"):
+        if re.search(nucleotid,seq):
+            pc = (seq.count(nucleotid)/total)*100
+            print(f'The percentage of {nucleotid} in {seq} is {pc}%')
+
+
+
+
 # Arguments 
 parser = ArgumentParser(description = 'Classify a sequence as DNA or RNA')
 parser.add_argument("-s", "--seq", type = str, required = True, help = "Input sequence")
 parser.add_argument("-m", "--motif", type = str, required = False, help = "Motif")
+
 
 if len(sys.argv) == 1:
     parser.print_help()
@@ -23,9 +34,11 @@ if re.search('^[ACGTU]+$', args.seq):
     # DNA contains T
     if re.search('T', args.seq) and not re.search('U',args.seq): 
         print ('The sequence is DNA')
+        percentage(args.seq)
     # RNA contains U
     elif re.search('U', args.seq) and not re.search('T',args.seq):
         print ('The sequence is RNA')
+        percentage(args.seq)
     # If T and U are detected the sequence is incorrect
     elif re.search('U',args.seq) and re.search('T',args.seq):
         print ('The sequence is not DNA nor RNA')
