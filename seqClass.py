@@ -5,12 +5,12 @@
 import sys, re
 from argparse import ArgumentParser
 
-def percentage(seq):
-    total = len(seq)
-    for nucleotid in ("A","T","U","C","G"):
-        if re.search(nucleotid,seq):
-            pct = round((seq.count(nucleotid)/total)*100,2)
-            print(f'The percentage of {nucleotid} in {seq} is {pct}%')
+def percentage(seq): #Defining the funtion and the object of the function
+    total = len(seq) #Define the total length of the sequence
+    for nucleotid in ("A","T","U","C","G"): #Selecting the nucleotides from which we want to get the percentage
+        if re.search(nucleotid,seq): #Searching for each one of the nucleotides in the sequence
+            pct = round((seq.count(nucleotid)/total)*100,2) # Calculating the percentages
+            print(f'The percentage of {nucleotid} in {seq} is {pct}%') #Printing the results of the percentages of each one of the nucleotides 
 
 
 
